@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЧЕРВЬ</title>
+    <link rel="stylesheet" href="css/Главные стили.css">
+    <link rel="stylesheet" href="css/слайдер.css">
+    <link rel="stylesheet" href="css/стили страшилок.css">
+    <link rel="stylesheet" href="css/коменты.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <div class="header">
+        <div class="header-content">
+            <ul class="nav">
+                <li><a href="Дипломный сайт версия 2.html"><img class="logo" src="img/лого1.1.png" alt="Логотип"></a></li>
+                <li><a href="admin/registr.php">Регистрация</a>\<a href="admin/login.php">Войти</a></li> 
+            </ul>
+            <nav>
+                <ul class="nav" style="margin: 0px 45px 0px 0px;">
+                    <li><a href="страница со страшилками.html">Страшилки</a></li>
+                    <li><a href="страница с играми.html">Игры</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+<!-- Остальное -->
+<div class="vse">
+    <div class="vse-podcontainer">
+        <div class="zagolovok"> 
+            <h2>Видео:ЧЕРВЬ</h2>
+        </div>
+        <div class="video">
+            <video id="myVideo" controls>
+                <source src="img/ЧЕРВЬ.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="zagolovok"> 
+            <h2>Комментарии</h2>
+            <button class="jump-to-comments" onclick="jumpToComments()">Написать комментарий</button>
+        </div>
+        <div class="comments">
+            <?php include 'display_comments.php'; ?>
+        </div>
+        <?php if (isset($_SESSION['login'])): ?>
+        <form id="comment-form" class="comment-form">
+            <input type="hidden" name="page_id" value="CHERV">
+            <textarea name="comment" class="comment-input" placeholder="Оставьте комментарий..."></textarea>
+            <button type="submit" class="comment-submit">Отправить</button>
+        </form>
+        <?php else: ?>
+            <p style="color: rgb(255, 240, 241);">Только авторизованные пользователи могут оставлять комментарии.<br>Напиши комментарий и получишь секретик.</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<script>
+    document.getElementById('comment-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        var formData = new FormData(this);
+        var page_id = this.page_id.value;
+    
+        fetch('add_comment.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Обновление раздел комментариев без перезагрузки страницы
+                fetch('display_comments.php?page_id=' + page_id)
+                .then(response => response.text())
+                .then(html => {
+                    document.querySelector('.comments').innerHTML = html;
+                });
+            } else {
+                alert('Ошибка: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+        });
+    });
+    </script>
+    <script>
+         function jumpToComments() {
+            // Получаем элемент формы комментариев
+            var commentForm = document.getElementById('comment-form');
+            // Прокручиваем страницу до формы комментариев
+            commentForm.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    <script src="js/Главные скрипты.js"></script>
+    <script src="js/поисковик.js"></script>
+    <script src="js/слайдер.js"></script>
+    <script src="js/скрипты страшилок.js"></script>
+
+    <!-- Подвал -->
+    <div class="footer">
+        <p>&copy; 2024 Мой сайт. Все права защищены.</p>
+    </div>
+
+</body>
+</html>

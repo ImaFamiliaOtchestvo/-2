@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вот ты слышишь, а видеть тебе не обязательно</title>
+    <link rel="stylesheet" href="css/Главные стили.css">
+    <link rel="stylesheet" href="css/слайдер.css">
+    <link rel="stylesheet" href="css/стили страшилок.css">
+    <link rel="stylesheet" href="css/коменты.css">
+    <style>
+        body {
+            color: #333;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .page {
+            background-color: #fff;
+            border: 1px solid #333;
+            padding: 40px;
+            margin-bottom: 40px;
+            margin-left: 20px;
+            margin-right: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            page-break-after: always; /* Разрыв страницы для печати */
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            text-indent: 2em;
+            margin-bottom: 20px;
+        }
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+        }}
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <div class="header">
+        <div class="header-content">
+            <ul class="nav">
+                <li><a href="Дипломный сайт версия 2.html"><img class="logo" src="img/лого1.1.png" alt="Логотип"></a></li>
+                <li><a href="admin/registr.php">Регистрация</a>\<a href="admin/login.php">Войти</a></li> 
+            </ul>
+            <nav>
+                <ul class="nav" style="margin: 0px 45px 0px 0px;">
+                    <li><a href="страница со страшилками.html">Страшилки</a></li>
+                    <li><a href="страница с играми.html">Игры</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+<!-- Остальное -->
+<div class="vse">
+    <div class="vse-podcontainer">
+        <div class="zagolovok"> 
+            <h2>Текст:Вот ты слышишь, а видеть тебе не обязательно</h2>
+        </div>
+        <div class="page">
+            <h1>Страшилка</h1>
+            <p>Сегодня ночью просыпаюсь и понимаю, что стоит мертвая тишина. В прямом смысле — мертвая. Мы живем около пруда, и у нас каждую ночь пение лягушек не прекращается, постоянно кто-то на машинах ездит, кто-то ходит (даже ночью), собаки соседские лают, в общем, тишины нет практически никогда. А тут как в коконе каком-то, тишина, даже не слышно ни работающего холодильника, ни мужа с ребенком, сопящих в соседней комнате.</p>
+           
+            <p>Проснулась и лежу, не понимаю ничего. Смотрю, кот мой на краю кровати сидит и в окно смотрит, не отрываясь. Я тоже на окно смотрю, и вдруг тишина прекратилась и начали лаять собаки. Наш, соседский, еще одних соседей (я их уже по голосам знаю), все начали не то что лаять, а просто заливаться лаем. Наш начал даже на железный забор прыгать и греметь. Я лежу смотрю на окно (оно приоткрыто), кот тоже как вкопанный в окно таращится.</p>
+           
+            <p>Потом вдруг лай прекратился и начали раздаваться звуки. Я если честно, таких никогда и не слышала. Как будто кто-то бьет кулаком по подушке, такие глухие и ритмичные. Но самое интересное, что каждый звук сопровождался вибрацией. Я ее чувствовала лежа на кровати. А звуки прямо от окна шли. На меня такой ужас напал, что просто караул. Но в то же время и любопытство. Я хотела подойти и потихоньку поднять одну жалюзи, посмотреть что же это, но мне как будто не давали. Как голос какой внутри говорил: <strong>«Вот ты слышишь, а видеть тебе не обязательно.»</strong></p>
+            <p>Кот все сидел по стойке смирно и смотрел в окно. Я натянула одеяло по самые уши и притаилась. Было такое ощущение, что если я пошевелюсь, то то, что за окном, меня заметит. Все это продолжалось где-то минуту, может две от силы. Потом звуки пропали и образовалась тишина. Я вообще от ужаса даже дышать перестала. Но вдруг резко лягушки запели, заработал холодильник, муж в комнате захрапел, кот свернулся клубочком и улегся спать. В общем, вернулась обычная ночь со своими звуками. Я еще долго лежала под одеялом, боясь пошевелиться. Даже время на лежащем на тумбочке телефоне не могла посмотреть, руку боялась высунуть. Потом уснула. Вот что это было? Как это объяснить?</p>
+            <p>Можно все списать на сонный паралич, глюки, но кот… он что тоже с глюками? Я, получается, не одна это все наблюдала.</p>
+        </div>
+        <div class="zagolovok"> 
+            <h2>Комментарии</h2>
+            <button class="jump-to-comments" onclick="jumpToComments()">Написать комментарий</button>
+        </div>
+        <div class="comments">
+            <?php include 'display_comments.php'; ?>
+        </div>
+        <?php if (isset($_SESSION['login'])): ?>
+        <form id="comment-form" class="comment-form">
+            <input type="hidden" name="page_id" value="CHERV">
+            <textarea name="comment" class="comment-input" placeholder="Оставьте комментарий..."></textarea>
+            <button type="submit" class="comment-submit">Отправить</button>
+        </form>
+        <?php else: ?>
+            <p style="color: aliceblue;">Только авторизованные пользователи могут оставлять комментарии.<br>Напиши комментарий и получишь секретик.</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<script>
+    document.getElementById('comment-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        var formData = new FormData(this);
+        var page_id = this.page_id.value;
+    
+        fetch('add_comment.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Обновление раздел комментариев без перезагрузки страницы
+                fetch('display_comments.php?page_id=' + page_id)
+                .then(response => response.text())
+                .then(html => {
+                    document.querySelector('.comments').innerHTML = html;
+                });
+            } else {
+                alert('Ошибка: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+        });
+    });
+    </script>
+    <script>
+        function jumpToComments() {
+           // Получаем элемент формы комментариев
+           var commentForm = document.getElementById('comment-form');
+           // Прокручиваем страницу до формы комментариев
+           commentForm.scrollIntoView({ behavior: 'smooth' });
+       }
+   </script>
+    <script src="js/Главные скрипты.js"></script>
+    <script src="js/поисковик.js"></script>
+    <script src="js/слайдер.js"></script>
+    <script src="js/скрипты страшилок.js"></script>
+
+    <!-- Подвал -->
+    <div class="footer">
+        <p>&copy; 2024 Мой сайт. Все права защищены.</p>
+    </div>
+
+</body>
+</html>

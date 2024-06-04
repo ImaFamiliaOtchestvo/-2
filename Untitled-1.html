@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #imageContainer {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
+#myImage {
+
+  object-fit: cover;
+  cursor: pointer;
+}
+
+#inputContainer {
+  position: fixed;
+  top: 0;
+  right: -200px;
+  width: 200px;
+  height: 100%;
+  background-color: white;
+  transition: right 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#myInput {
+  width: 80%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+    </style>
+</head>
+<body>
+    <div id="imageContainer">
+        <img id="myImage" src="img/zombie2.png" alt="My Image">
+      </div>
+      <div id="inputContainer">
+        <input type="text" id="myInput" placeholder="Enter text...">
+      </div>
+    <script>
+        document.getElementById('myImage').addEventListener('click', function() {
+  // Меняем изображение
+  this.src = 'img/zombie.png';
+
+  // Показываем input
+  var inputContainer = document.getElementById('inputContainer');
+  inputContainer.style.right = '0';
+});
+    </script>
+</body>
+</html>

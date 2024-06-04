@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Maze Game</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #0dbd07;
+  }
+  canvas {
+    display: block;
+  }
+</style>
+</head>
+<body>
+<canvas id="mazeCanvas"></canvas>
+<script>
+  alert('Твоя задача дойти до своей принцессы. Вперед');
+  // Define the maze size and other game parameters here
+  const mazeWidth = 190;
+  const mazeHeight = 90;
+  const cellSize = 10;
+  const wallThickness = 1;
+  const playerSize = cellSize - wallThickness * 2;
+  const playerColor = '#00F';
+  const wallColor = '#FFF';
+  const finishColor = '#bd0753'; // Цвет для финиша
+
+  // Initialize the maze and player position
+  let maze = [];
+  let player = { x: 1, y: 1 };
+  let finish = { x: mazeWidth - 2, y: mazeHeight - 2 };
+
+  // Function to generate the maze (you would need to implement this)
+  function generateMaze() {
+    // Generate the maze using a depth-first search or another algorithm
+    // For simplicity, this function is not implemented here
+    // It should populate the maze array with wall and path information
+    // Example: Fill the maze with random values (30% chance for a wall)
+    for (let y = 0; y < mazeHeight; y++) {
+      maze[y] = [];
+      for (let x = 0; x < mazeWidth; x++) {
+        maze[y][x] = Math.random() < 0.3; // 30% chance for a wall
+      }
+    }
+  }
+
+  // Function to draw the maze and player
+  function drawMaze() {
+    const canvas = document.getElementById('mazeCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the maze
+    for (let y = 0; y < mazeHeight; y++) {
+      for (let x = 0; x < mazeWidth; x++) {
+        if (maze[y] && maze[y][x]) { // Check if maze[y] is defined before accessing maze[y][x]
+          ctx.fillStyle = wallColor;
+          ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        } else {
+          ctx.strokeStyle = wallColor;
+          ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    // Draw the finish
+    ctx.fillStyle = finishColor;
+    ctx.fillRect(
+      finish.x * cellSize + wallThickness,
+      finish.y * cellSize + wallThickness,
+      playerSize,
+      playerSize
+    );
+
+    // Draw the player
+    ctx.fillStyle = playerColor;
+    ctx.fillRect(
+      player.x * cellSize + wallThickness,
+      player.y * cellSize + wallThickness,
+      playerSize,
+      playerSize
+    );
+  }
+
+  // Function to handle player movement
+  function movePlayer(dx, dy) {
+    const newX = player.x + dx;
+    const newY = player.y + dy;
+
+    // Check if the new position is within the maze bounds and not a wall
+    if (newX >= 0 && newX < mazeWidth && newY >= 0 && newY < mazeHeight && !maze[newY][newX]) {
+      player.x = newX;
+      player.y = newY;
+    }
+
+    // Check if the player has reached the finish
+    if (player.x === finish.x && player.y === finish.y) {
+      // Handle the finish condition (e.g., level complete)
+      alert('ЕЕЕЕ, Ты выйграл! А теперь давай сначала.');
+      // Refresh the page
+      location.reload();
+    } else {
+      // Redraw the maze
+      drawMaze();
+    }
+  }
+
+  // Set up the canvas and maze
+  function setup() {
+    const canvas = document.getElementById('mazeCanvas');
+    canvas.width = mazeWidth * cellSize;
+    canvas.height = mazeHeight * cellSize;
+
+    // Generate the maze
+    generateMaze();
+
+    // Draw the initial maze
+    drawMaze();
+
+    // Set up keyboard event listeners for player movement
+    window.addEventListener('keydown', (event) => {
+      switch (event.key) {
+        case 'ArrowUp':
+          movePlayer(0, -1);
+          break;
+        case 'ArrowDown':
+          movePlayer(0, 1);
+          break;
+        case 'ArrowLeft':
+          movePlayer(-1, 0);
+          break;
+        case 'ArrowRight':
+          movePlayer(1, 0);
+          break;
+      }
+    });
+  }
+
+  // Start the game
+  setup();
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+body{
+    background-image: url(img/Две\ звезды.jpg);
+}
+
+h1{
+    color: aliceblue;
+}
+
+.menu{
+    text-align: center;
+    margin-top: 300px;
+}

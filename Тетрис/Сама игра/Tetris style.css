@@ -1,0 +1,43 @@
+html, body{
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+
+body{
+    background: url(img/туманный\ лес.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+canvas{
+    background-color: rgb(0, 0, 0);
+    z-index: -1;
+    position: relative;
+    right: 630px;
+    bottom: 8px;
+}
+
+.img2{
+    position: absolute;
+    right: 80%;
+}
+
+.ruka{
+    width: 640px;
+    z-index: -2;
+    position: relative;
+    left: 600px;
+}
+
+.palez{
+    width: 640px;
+    z-index: 1;
+    position: relative;
+    right: 45px;
+}
+
+.port{
+    height: 440px;
+}

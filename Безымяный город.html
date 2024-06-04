@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Безымянный город</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out;
+  }
+  #game-container {
+    text-align: center;
+  }
+  #output {
+    margin-bottom: 20px;
+  }
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div id="game-container">
+  <div id="output"></div>
+  <button onclick="game.makeChoice(1)">Исследовать улицы</button>
+  <button onclick="game.makeChoice(2)">Осмотреть окрестности</button>
+  <button onclick="game.makeChoice(3)">Подойти к незнакомому человеку</button>
+</div>
+
+<script>
+class Game {
+  constructor() {
+    this.output = document.getElementById('output');
+    this.output.innerText = "Добро пожаловать в Безымянный город! Ты стоишь в заброшенном городе, наполненном пугающими персонажами и ситуациями.";
+  }
+
+  makeChoice(choice) {
+    this.output.innerText = ""; // Очищаем предыдущий вывод
+    switch (choice) {
+      case 1:
+        this.output.innerText += "Ты исследуешь улицы города. По пути ты встречаешь незнакомого человека, который предлагает тебе помочь.";
+        document.body.style.backgroundImage = `url('https://source.unsplash.com/random/800x600?city,street&blur=5')`;
+        break;
+      case 2:
+        this.output.innerText += "Ты осматриваешь окрестности, но ничего интересного не видишь.";
+        document.body.style.backgroundImage = `url('https://source.unsplash.com/random/800x600?city&blur=5')`;
+        break;
+      case 3:
+        this.output.innerText += "Ты подходишь к незнакомому человеку и он рассказывает тебе историю города.";
+        document.body.style.backgroundImage = `url('https://source.unsplash.com/random/800x600?person&blur=5')`;
+        break;
+      default:
+        this.output.innerText += "Такого действия нет. Попробуйте еще раз.";
+    }
+  }
+}
+
+const game = new Game();
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+body {
+  background-color: #000;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-container {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  flex: 0 0 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.5s ease;
+}
+
+.image-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.image-container p h1 {
+  margin: 10px 0;
+  font-size: medium;
+}
+
+.description {
+  display: none;
+  background-color: #800000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 97.5%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.slider-controls button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2em;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s ease;
+}
+
+.slider-controls button:hover {
+  transform: scale(1.2);
+}
+
+.slider-controls button:first-child {
+  margin-right: 10px;
+}
+
+.slider-controls button:last-child {
+  margin-left: 10px;
+}

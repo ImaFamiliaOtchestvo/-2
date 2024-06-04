@@ -1,0 +1,56 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    color: #3cff00;
+    height: 200vh;
+  }
+  
+  #game-container {
+    text-align: left;
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #3cff00;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow-y: auto;
+  }
+  
+  #output {
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+  }
+  
+  #choices {
+    position: sticky;
+    bottom: 0;
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #333;
+    color: #3cff00;
+    border: 1px solid #3cff00;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #3cff00;
+    color: #333;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }

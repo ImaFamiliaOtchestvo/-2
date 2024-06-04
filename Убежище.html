@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Убежище</title>
+<style>
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #000000e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  #game-container {
+    text-align: left;
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #3cff00;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  #output {
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    color: #3cff00;
+  }
+  #choices {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #181818;
+    color: #3cff00;
+    border: 1px solid #3cff00;
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: #3cff00;
+    color: #333;
+  }
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+</style>
+</head>
+<body>
+<div id="game-container">
+  <div id="output"></div>
+  <div id="choices"></div>
+</div>
+
+<script>
+class Game {
+  constructor() {
+    this.inventory = [];
+    this.gameOver = false;
+    this.output = document.getElementById('output');
+    this.output.innerText = "Добро пожаловать в Убежище! Ты стоишь в темном, замкнутом помещении. Твоя голова кружится, и ты чувствуешь, что что-то странное происходит. Вокруг тебя громкие звуки.\n";
+    this.output.innerText += "Вы находите старую записку на столе. Выбор:\n";
+    this.output.innerText += "1. Прочитать записку\n";
+    this.output.innerText += "2. Игнорировать записку\n";
+    this.currentState = 'start';
+  }
+
+  makeChoice(choice) {
+    if (this.gameOver) return;
+
+    this.output.innerText += "\n"; // Добавляем новую строку перед новым выбором
+
+    switch (this.currentState) {
+      case 'start':
+        this.handleStartChoice(choice);
+        break;
+      // Добавьте другие состояния и обработчики выбора здесь
+      default:
+        this.output.innerText += "Такого действия нет. Попробуйте еще раз.";
+    }
+
+    this.updateChoices();
+    this.scrollToBottom(); // Прокручиваем до последнего сообщения
+  }
+
+  handleStartChoice(choice) {
+    switch (choice) {
+      case 1:
+        this.output.innerText += "Ты прочитываешь записку: \"Не слушай голоса\". Это заставляет вас быть осторожнее с теми, кто вас окружает.";
+        this.currentState = 'hallway'; // Пример перехода в состояние "hallway"
+        break;
+      case 2:
+        this.output.innerText += "Ты продолжаете исследовать дом, но голоса становятся все громче.";
+        // Добавьте логику для второго выбора
+        break;
+      default:
+        this.output.innerText += "Такого действия нет. Попробуйте еще раз.";
+    }
+  }
+
+  updateChoices() {
+    const choicesContainer = document.getElementById('choices');
+    choicesContainer.innerHTML = ''; // Очищаем предыдущие варианты
+
+    // Добавляем новые кнопки выбора в зависимости от состояния игры
+    switch (this.currentState) {
+      case 'start':
+        this.addChoiceButton('Прочитать записку', 1);
+        this.addChoiceButton('Игнорировать записку', 2);
+        break;
+      // Добавьте другие состояния и кнопки выбора здесь
+      default:
+        this.output.innerText += "Такого действия нет. Попробуйте еще раз.";
+    }
+  }
+
+  addChoiceButton(text, choice) {
+    const button = document.createElement('button');
+    button.innerText = text;
+    button.onclick = () => this.makeChoice(choice);
+    document.getElementById('choices').appendChild(button);
+  }
+
+  disableButtons() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.disabled = true;
+    });
+  }
+
+  scrollToBottom() {
+    this.output.lastElementChild.scrollIntoView(false);
+  }
+}
+
+const game = new Game();
+game.updateChoices(); // Инициализируем кнопки выбора
+</script>
+</body>
+</html>

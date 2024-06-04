@@ -1,0 +1,84 @@
+/* Общие стили */
+
+
+/* Адаптивные стили для мобильных устройств */
+@media screen and (max-width: 767px) {
+
+
+    
+    .vse {
+        padding: 10px;
+    }
+
+    .nav, nav{
+        padding: 0%;
+        margin: 0%;
+    }
+
+    nav{
+        display: flex;
+        align-items: center;
+    }
+
+    .content{
+        height: 100%;
+    }
+
+    .advantages{
+        display: none;
+    }
+
+    .game{
+        display: none;
+    }
+
+    .header-content, .nav, .content, .advantages, .advantages2, .sales-cards, .contact-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav li, .sales-card, .contact-form {
+        margin: 10px 0;
+    }
+
+    .advantages2{
+        font-size: 2em;
+        margin: 0;
+        position: relative;
+        left: 10px;
+    }
+
+    .content h1 {
+        font-size: 2em;
+        margin-right: 50px;
+    }
+
+    .content p {
+        font-size: 15px;
+        width: 80%;
+        height: 90%;
+        margin-right: 50px;
+    }
+
+    .avavideo {
+        width: 100%;
+        height: auto;
+    }
+    .vse {
+        padding: 10px;
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        overflow: hidden; /* Скрываем переполнение */
+    }
+
+    .video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Сохраняем пропорции */
+    }
+}
